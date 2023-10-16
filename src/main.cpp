@@ -162,6 +162,16 @@ bool search(const Automata &automata, std::set<int> &pastStates, std::vector<cha
   return false;
 }
 
+std::string readWithPrompt(std::string prompt)
+{
+  std::string input;
+
+  std::cout << prompt;
+  std::cin >> input;
+
+  return input;
+}
+
 bool algorithm(std::string w1, std::string w2, const Automata &automata, const int &alphabetPower, const int &statesPower)
 {
   std::set<int> w2States;
@@ -170,7 +180,7 @@ bool algorithm(std::string w1, std::string w2, const Automata &automata, const i
   {
     Automata tempAutomata(automata);
 
-    if (tempAutomata.processWord(w2) && tempAutomata.isStateFinal())
+    if (tempAutomata.processWord(w2))
     {
       w2States.insert(state);
     }
@@ -210,7 +220,7 @@ int main(int argc, char **argv)
     transitions.push_back(AutomataTransition::read(inputFile));
   }
 
-  const std::string w1 = "ea", w2 = "d";
+  const std::string w1 = readWithPrompt("w1: "), w2 = readWithPrompt("w2: ");
 
   const bool result = algorithm(w1, w2, Automata(startState, finalStates, transitions), alphabetPower, statesPower);
 
