@@ -97,7 +97,7 @@ std::set<int> readFinalStates(std::istream &input_stream)
   const auto statesNumber = readNumber(input_stream);
 
   std::set<int> finalStates;
-state
+  
   for (int i = 0; i < statesNumber; i++)
   {
     finalStates.insert(readNumber(input_stream));
